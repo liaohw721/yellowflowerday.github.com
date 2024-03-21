@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <style>
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 6vw;
+                /* Tamaño del texto ajustado al ancho de la pantalla */
+            }
+
+            h2 {
+                font-size: 5vw;
+                /* Tamaño del texto ajustado al ancho de la pantalla */
+            }
+
+            p {
+                font-size: 3vw;
+                /* Tamaño del texto ajustado al ancho de la pantalla */
+            }
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+        }
+
+        header h1 {
+            margin-right: 40px;
+        }
+
+        h1 {
+            font-family: "Italianno", cursive;
+            font-size: 3.5em;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            /* Tamaño del texto para tamaños de pantalla mayores */
+        }
+
+        .textbt {
+            font-family: "Italianno", cursive;
+            font-size: 40px;
+            margin-top: 50px;
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+
+        .text-content p {
+            text-indent: 20px;
+            /* Ajusta el valor según tu preferencia */
+        }
+
+        body {
+            background-color: rgba(255, 199, 0, 1);
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            margin-left: 300px;
+            margin-right: 300px;
+            margin-top: 60px;
+        }
+
+        footer {
+            background-color: rgba(112, 83, 41, 1);
+            /* Color de fondo del footer */
+            height: 300px;
+            /* Altura del footer */
+            width: 100%;
+            /* Ancho completo del footer */
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .container>div {
+            flex-basis: calc(50% - 30px);
+            /* Establece el ancho de cada div al 50% del contenedor menos el espacio entre ellos */
+        }
+
+        .text-content {
+            width: calc(50% - 10px);
+            /* Restar el espacio entre los dos bloques */
+            box-sizing: border-box;
+            text-align: justify;
+        }
+
+        .text-content p {
+            padding: 0 20px;
+            /* Ajusta el valor de padding según tu preferencia */
+        }
+
+
+        .carousel-container {
+            width: calc(50% - 10px);
+            /* Restar el espacio entre los dos bloques */
+            position: relative;
+            overflow: hidden;
+            /* Para ocultar el desbordamiento del contenido */
+        }
+
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease;
+            /* Transición suave */
+        }
+
+        .carousel-slide img {
+            flex: 0 0 100%;
+            /* Para que las imágenes mantengan su tamaño */
+            max-width: 100%;
+            /* Asegurar que las imágenes no se desborden */
+            height: auto;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .imgflower {
+            position: relative;
+        }
+
+        footer {
+            background-color: rgba(112, 83, 41, 1);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            font-family: "Italianno", cursive;
+        }
+
+        .footer-content {
+            font-family: "Italianno", cursive;
+        }
+
+        .footer-content h1 {
+            margin-bottom: 10px;
+        }
+
+        .footer-content p {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .rights {
+
+            font-family: Arial, sans-serif;
+            text-align: right;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: rgba(112, 83, 41, 1);
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            outline: none;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .flower-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('img/image 2.png');
+            /* Corregir la ruta de la imagen */
+            background-size: contain;
+            pointer-events: none;
+            animation: flowerFall linear infinite;
+        }
+
+        @keyframes flowerFall {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+        }
+
+        @media only screen and (max-width: 900px) {
+            main {
+                margin: 0 auto;
+                /* Centrar el contenido */
+                padding: 0 20px;
+                /* Agregar espacio a los lados */
+            }
+
+            .container {
+                flex-direction: column;
+                margin-bottom: 40px;
+            }
+
+            .text-content,
+            .carousel-container {
+                width: 100%;
+            }
+
+            .imgflower {
+                text-align: center;
+                /* Centrar la imagen */
+            }
+
+            footer .rights {
+                text-align: center;
+                margin: 0;
+            }
+        }
+
+        /* Reducir el tamaño de la fuente en dispositivos móviles */
+        @media only screen and (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h1 {
+                margin-bottom: 10px;
+                font-size: 2em;
+                /* Tamaño de fuente más pequeño */
+            }
+
+            p {
+                font-size: 1.2em;
+                /* Tamaño de fuente más pequeño */
+            }
+        }
+
+        /* Ajustar la imagen para dispositivos móviles */
+        img {
+            max-width: 100%;
+            /* Ancho máximo del 100% */
+            height: auto;
+            /* Altura automática para mantener la proporción */
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>"¡Feliz Día de las Flores Amarillas!"</h1>
+            <img src="img\lotsflower1.png" alt="hflo">
+        </header>
+
+
+        <div class="container">
+            <div class="text-content">
+
+                <h2>¿Qué es un día de las flores amarillas?</h2>
+
+                <p>El "día de las flores amarillas" no es un evento reconocido ni registrado a nivel global, es una
+                    tendencia que ha sido viral por una canción “flores amarillas” se ha popularizado en parte debido a
+                    una canción llamada "Flores Amarillas".<br></p>
+                <p>Esta canción, junto con su mensaje y simbolismo, ha generado
+                    una tendencia viral que ha llevado a algunas personas a asociar el concepto de flores amarillas con
+                    la celebración de la primavera .... <br></p>
+                <p>Para este tema, los gestos de cariño no pueden faltar, ya que en
+                    este día se acostumbra regalar flores amarillas. Pero, ¿Cuál es realmente su significado y cuál es
+                    su origen? Aquí te lo explicamos.</p>
+
+                <img src="img\lotsflower2.png" alt="fl">
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="img\flores_amarillas_1.png" alt="Slide 1" class="carousel-image">
+                    <img src="img\flores_amarillas_2.png" alt="Slide 2" class="carousel-image">
+                    <img src="img\flores_amarillas_3.png" alt="Slide 3" class="carousel-image">
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-button prev" onclick="plusSlides(-1)">&#10094;</button>
+                    <button class="carousel-button next" onclick="plusSlides(1)">&#10095;</button>
+                </div>
+
+                <div class="carousel-dots">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="text-content">
+
+                <h2>¿Cuándo se festeja?</h2>
+
+                <p>El "día de las flores amarillas" se celebra según su origen el 21 de septiembre, pero ya que también
+                    se
+                    asoció el concepto, con la celebración de la primavera se celebra también en marzo ....<br></p>
+                <p>Por que en
+                    el hemisferio norte, la primavera comienza alrededor del 19 al 21 de marzo, dependiendo del año, por
+                    otra parte en el hemisferio sur, la primavera comienza alrededor del 21 al 23 de septiembre.
+                    <br>
+                </p>
+                <p>En estas fechas se marcan el inicio de la temporada primavera de cada hemisferio y son celebradas
+                    como
+                    el inicio de la primavera también de a paso día de las flores amarillas.
+                </p>
+            </div>
+            <div class="text-content">
+                <h2>Origen</h2>
+                <p>El origen tiene relación con la canción “Flores amarillas”, que musicaliza la novela argentina
+                    “Floricienta”, en la que una joven trabaja como niñera en una casa que corresponde a la familia
+                    Fritzenwalde, ubicada en Florencia. <br></p>
+                <p>La historia de la novela resalta como los padres fallecen,
+                    entonces el hijo mayor Federico tiene que cuidar a sus hermanos, sin embargo, mientras pasa el
+                    tiempo y la
+                    historia se enamora de “Floreciente”, joven con la inicia una relación sentimental.
+                </p>
+            </div>
+
+        </div>
+
+        </div>
+        <div class="container">
+            <div class="imgflower">
+                <img src="img\sunflower1.png" alt="flor">
+            </div>
+
+
+            <div class="text-content">
+
+                <h2>¿Que significan las flores amarillas?</h2>
+
+                <p>El significado de las flores amarillas puede variar según el contexto cultural, la ocasión y la
+                    interpretación individual. En general, las flores amarillas suelen estar asociadas con sentimientos
+                    de alegría, felicidad, amistad y energía positiva. También pueden simbolizar el sol, la luz, la
+                    vitalidad y la renovación.
+                    <br>
+                </p>
+                <p>En algunos casos, las flores amarillas pueden ser interpretadas como
+                    símbolos de esperanza y optimismo. Sin embargo, es importante tener en cuenta que el significado de
+                    las flores puede variar según la cultura y las experiencias personales de cada individuo.<br></p>
+                <p>Las
+                    flores amarillas también pueden llevar consigo connotaciones de amor y afecto. En el lenguaje de las
+                    flores, el color amarillo puede representar la alegría y la felicidad que se experimenta en el amor.
+                    Asimismo, las flores amarillas pueden transmitir un mensaje de cariño, calidez y aprecio hacia la
+                    persona a la que se le entregan. Además, en algunas culturas, se cree que las flores amarillas
+                    pueden simbolizar la pasión y el romance, añadiendo así una capa adicional de significado amoroso a
+                    su belleza radiante.
+                </p>
+
+                <h1 class="textbt">"Feliz Día de las Flores Amarillas"</h1>
+                <button onclick="startFlowerRain()">Hacer llover flores amarillas</button>
+            </div>
+
+            <div class="flower-rain" id="flowerRain"></div>
+
+    </main>
+
+    <footer>
+
+        <div class="footer-content">
+            <h1>"Feliz Día de las Flores Amarillas"</h1>
+            <p>Como siempre, deseo tu felicidad...</p>
+            <p class="rights" style="font-size: 15px; margin-right:30px ;">©2024 corp. All Rights Reserved.</p>
+        </div>
+
+    </footer>
+
+</body>
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("carousel-image");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+    }
+
+    // Cambiar de diapositiva automáticamente cada 7 segundos
+    setInterval(function () {
+        plusSlides(1);
+    }, 7000); // 7000 milisegundos = 7 segundos
+
+
+    function startFlowerRain() {
+        const flowerRain = document.getElementById('flowerRain');
+        const flowerImages = ['img/image 2.png', "img/image 3.png", "img/image 4.png"]; // Rutas relativas de tus imágenes
+
+        for (let i = 0; i < 50; i++) {
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            flower.style.backgroundImage = `url(${flowerImages[Math.floor(Math.random() * flowerImages.length)]})`;
+            flower.style.left = Math.random() * window.innerWidth + 'px';
+            flower.style.animationDuration = Math.random() * 3 + 2 + 's';
+            flowerRain.appendChild(flower);
+        }
+    }
+
+</script>
+
+</html>
